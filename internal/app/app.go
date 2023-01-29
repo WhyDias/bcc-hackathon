@@ -1,24 +1,21 @@
 package app
 
 import (
+	"bcc-hackathon-go/internal/handler"
+	"bcc-hackathon-go/internal/server"
+	"bcc-hackathon-go/internal/service"
+	monitoring "bcc-hackathon-go/pkg/moniroting"
 	"context"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 	"os"
 	"os/signal"
 	"syscall"
-	"virtual-strike-backend-go/internal/handler"
-	"virtual-strike-backend-go/internal/server"
-	"virtual-strike-backend-go/internal/service"
-	"virtual-strike-backend-go/pkg/models"
-	monitoring "virtual-strike-backend-go/pkg/moniroting"
 )
 
 func Run() {
 
 	monitoring.Init()
-
-	models.ConnectDataBase()
 
 	if err := initConfig(); err != nil {
 		logrus.Fatalf("error occured while initializing configs: %s", err.Error())

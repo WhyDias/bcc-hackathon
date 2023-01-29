@@ -1,43 +1,32 @@
 package service
 
 import (
-	"virtual-strike-backend-go/pkg/modules"
+	"bcc-hackathon-go/pkg/models"
+	"bcc-hackathon-go/pkg/modules"
 )
 
-type Time interface {
-	TimeLogic(jsonInput modules.TimeRequest) (code int, any modules.Response)
+type HrCall interface {
+	HrCallLogic(jsonInput modules.Request) (code int, any models.HrCall)
 }
 
-type Upload interface {
-	UploadLogic(jsonInput modules.UploadRequest) (code int, any modules.Response)
+type TechCall interface {
+	TechCallLogic(jsonInput modules.Request) (code int, any models.TechCall)
 }
 
-type WorkDayInfo interface {
-	WorkDayInfoLogic(jsonInput modules.WorkDayInfoRequest) (code int, any modules.Response)
-}
-
-type Point interface {
-	PointLogic(jsonInput modules.PointRequest) (code int, any []modules.PointResponse)
-}
-
-type Logging interface {
-	LoggingLogic(jsonInput modules.LoggingRequest) (code int, any modules.Response)
+type InfoFromNumber interface {
+	InfoFromNumberLogic(jsonInput modules.Request) (code int, any models.InfoFromNumber)
 }
 
 type Service struct {
-	Time
-	Upload
-	WorkDayInfo
-	Point
-	Logging
+	HrCall
+	InfoFromNumber
+	TechCall
 }
 
 func NewService() *Service {
 	return &Service{
-		Time:        NewTimeService(),
-		Upload:      NewUploadService(),
-		WorkDayInfo: NewWorkDayInfoService(),
-		Point:       NewPointService(),
-		Logging:     NewLoggingService(),
+		HrCall:         NewHrCallService(),
+		InfoFromNumber: NewInfoFromNumberService(),
+		TechCall:       NewTechCallService(),
 	}
 }

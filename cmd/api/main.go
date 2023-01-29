@@ -1,6 +1,6 @@
 package main
 
-import "virtual-strike-backend-go/internal/app"
+import "bcc-hackathon-go/internal/app"
 
 // @title           Virtual-strike-backend-go
 // @version         1.0
